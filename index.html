@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MockMyTrip - Travel Booking</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Mock<span>MyTrip</span></div>
+    <div>
+      <a href="#" class="nav-link">My Trips</a>
+      <a href="#" class="nav-link">Support</a>
+    </div>
+  </nav>
+
+  <div class="search-container">
+    <div class="tabs">
+      <div class="tab active" id="tab-hotels" onclick="switchTab('hotels')">
+        <span class="tab-icon">🏢</span> Hotels
+      </div>
+      <div class="tab" id="tab-cruises" onclick="switchTab('cruises')">
+        <span class="tab-icon">🚢</span> Cruises
+      </div>
+    </div>
+
+    <div id="error-banner" class="error-msg"></div>
+
+    <div id="hotel-form" class="form-row">
+      <div class="input-wrap">
+        <label>City, Property or Location</label>
+        <input type="text" id="hotel-city" class="input-field" placeholder="Select City" autocomplete="off">
+        <div class="suggestions" id="city-suggestions"></div>
+      </div>
+      <div class="input-wrap">
+        <label>Check-in</label>
+        <input type="date" id="checkin" class="input-field">
+      </div>
+      <div class="input-wrap">
+        <label>Check-out</label>
+        <input type="date" id="checkout" class="input-field">
+      </div>
+      <div class="input-wrap" style="flex: 0.5;">
+        <label>Guests</label>
+        <input type="number" id="guests" min="1" class="input-field" placeholder="2">
+      </div>
+      <button class="search-btn" id="search-hotels">Search</button>
+    </div>
+
+    <div id="cruise-form" class="form-row hidden">
+      <div class="input-wrap">
+        <label>Cruise Line</label>
+        <select id="cruise-line" class="input-field">
+          <option value="" selected disabled>Select Line</option>
+          <option value="Royal Caribbean">Royal Caribbean</option>
+          <option value="Carnival">Carnival Cruise Line</option>
+          <option value="Norwegian">Norwegian Cruise Line</option>
+        </select>
+      </div>
+      <div class="input-wrap">
+        <label>Ship</label>
+        <select id="cruise-ship" class="input-field" disabled>
+          <option value="" selected disabled>Select Line First</option>
+        </select>
+      </div>
+      <button class="search-btn" id="search-cruises">Search</button>
+    </div>
+  </div>
+
+  <div class="main-body" id="main-content">
+    <aside class="sidebar">
+      <div class="filter-group">
+        <span class="filter-header">Popular Filters</span>
+        <label class="chk-label">
+          <input type="checkbox" id="filter-elevator"> Elevator / Lift
+        </label>
+        <label class="chk-label">
+          <input type="checkbox" id="filter-breakfast"> Breakfast Included
+        </label>
+        <label class="chk-label">
+          <input type="checkbox" id="filter-pool"> Swimming Pool
+        </label>
+      </div>
+      <div class="filter-group">
+        <span class="filter-header">Star Rating</span>
+        <label class="chk-label"><input type="checkbox" value="5" class="star-chk"> 5 Star</label>
+        <label class="chk-label"><input type="checkbox" value="4" class="star-chk"> 4 Star</label>
+        <label class="chk-label"><input type="checkbox" value="3" class="star-chk"> 3 Star</label>
+      </div>
+      <button class="view-deal" style="width:100%; text-align:center; background: var(--secondary);" id="apply-filters">Apply Filters</button>
+    </aside>
+
+    <main>
+      <div id="loader">
+        <div class="spinner"></div>
+        <p>Searching best prices...</p>
+      </div>
+
+      <div id="results-area">
+        <div class="results-header" id="hotel-header">
+          <h2 style="margin:0; font-size:1.4rem;">Available Properties</h2>
+          <select class="sort-select" id="sort-hotels">
+            <option value="pop">Popularity</option>
+            <option value="rating_high">User Rating (Highest First)</option>
+            <option value="price_low">Price (Lowest First)</option>
+          </select>
+        </div>
+
+        <div id="listing-container"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
